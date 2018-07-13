@@ -19,6 +19,12 @@
 
 ## Database
 
+  * CREATE DATABASE steven_colburn;
+  * USE steven_colburn;
+
+  * CREATE TABLE `steven_colburn`.`stylists` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
+
+  * CREATE TABLE `steven_colburn`.`clients` ( `id` INT NOT NULL AUTO_INCREMENT , `stylistId` INT NOT NULL , `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
 
 ## License
 
