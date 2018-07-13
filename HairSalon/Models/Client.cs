@@ -51,9 +51,9 @@ namespace HairSalon.Models
 
     public void Save()
     {
-      string columns = "name";
-      List<string> valueNames = new List<string>(){"@Name"};
-      List<Object> values = new List<Object>(){_name};
+      string columns = "name,stylistId";
+      List<string> valueNames = new List<string>(){"@Name","@StylistId"};
+      List<Object> values = new List<Object>(){_name,_stylistId};
       DB.SaveToTable(_tableName,columns,valueNames,values);
       _id = DB.LastInsertId(_tableName);
     }

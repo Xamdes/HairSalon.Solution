@@ -32,8 +32,23 @@ namespace HairSalon.Controllers
     [HttpGet("/stylists/{id}")]
     public ActionResult Details(int id)
     {
-      Stylist Stylist = Stylist.Find(id);
-      return View(Stylist);
+      Stylist newStylist = Stylist.Find(id);
+      return View(newStylist);
+    }
+
+    [HttpPost("/stylists/{id}/save")]
+    public ActionResult NewClientRedirect(int id, string name)
+    {
+      Stylist newStylist = Stylist.Find(id);
+      newStylist.AddClient(name);
+      //return View(newStylist.GetId());
+      return RedirectToAction("Details",id);
+    }
+
+    [HttpGet("/stylists/{id}/new")]
+    public ActionResult AddClient(int id)
+    {
+      return View(id);
     }
 
     [HttpGet("/stylists/{id}/delete")]

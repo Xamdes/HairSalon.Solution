@@ -46,7 +46,7 @@ namespace HairSalon.Models
 
     public void AddClient(string name)
     {
-      Client newClient = new Client(name,_id)
+      Client newClient = new Client(name,_id);
       newClient.Save();
     }
 
@@ -77,7 +77,7 @@ namespace HairSalon.Models
       while(rdr.Read())
       {
         int id = rdr.GetInt32(0);
-        string name = rdr.GetString(1);
+        string name = rdr.GetString(2);
         Client newClient = new Client(name,_id,id);
         clients.Add(newClient);
       }

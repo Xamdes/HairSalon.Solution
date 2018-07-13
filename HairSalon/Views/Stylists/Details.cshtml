@@ -1,6 +1,12 @@
-<h1>@Model.GetName()</h1>
-<h4><a href='/stylists/@Model.GetId()/update-desc'>Edit</a></h4>
-<h4><a href='/stylists/@Model.GetId()/delete'>Delete</a></h4>
+<h1>Salon</h1>
+<h2>@Model.GetName()</h2>
+@foreach(var client in Model.GetClients())
+{
+  <li>@client.GetName()</li>
+}
 
-<a href='/stylists/new'>Add another item</a>
-<a href='/stylists'>View all items</a>
+<a href='/stylists/@Model.GetId()/new'>Add Client</a>
+
+<h4><a href='/stylists/@Model.GetId()/delete'>Delete Stylist</a></h4>
+<a href='/stylists/new'>Add another Stylist</a>
+<a href='/stylists'>View all Stylists</a>
