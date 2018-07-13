@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 cd ..
-rm -rf ./ToDoList/bin/
-rm -rf ./ToDoList/obj/
-rm -rf ./ToDoList.Tests/bin/
-rm -rf ./ToDoList.Tests/obj/
+rm -rf ./HairSalon/bin/
+rm -rf ./HairSalon/obj/
+rm -rf ./HairSalon.Tests/bin/
+rm -rf ./HairSalon.Tests/obj/
 ./Commands/fresh.sh

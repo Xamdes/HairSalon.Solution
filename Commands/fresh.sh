@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 cd ..
-dotnet restore ./ToDoList
-dotnet build ./ToDoList
-dotnet restore ./ToDoList.Tests/
+dotnet restore ./HairSalon
+dotnet build ./HairSalon
+dotnet restore ./HairSalon.Tests/

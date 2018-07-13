@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-cd ../ToDoList/
+cd ../HairSalon/
 #open http://localhost:5000
 dotnet run

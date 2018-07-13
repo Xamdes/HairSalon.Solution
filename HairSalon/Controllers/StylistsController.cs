@@ -16,10 +16,10 @@ namespace HairSalon.Controllers
     }
 
     [HttpPost("/stylists")]
-    public ActionResult Create(string description, DateTime date)
+    public ActionResult Create(string name)
     {
-      Stylist newItem = new Stylist (description,date);
-      newItem.Save();
+      Stylist newStylist = new Stylist (name);
+      newStylist.Save();
       return RedirectToAction("Index");
     }
 

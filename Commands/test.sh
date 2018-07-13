@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-cd ../ToDoList.Tests/
+cd ../HairSalon.Tests/
 dotnet test

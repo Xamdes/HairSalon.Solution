@@ -9,41 +9,68 @@ namespace HairSalon.Models
 {
   public class Client
   {
+    private static string _tableName = "clients";
     private string _name;
     private int _id;
     private int _stylistId;
 
-    public Client(string name,int stylistId)
+    public Client(string name,int stylistId, int id = -1)
     {
       _name = name;
       _stylistId = stylistId;
+      _id = id;
     }
 
     public string GetName()
     {
       return _name;
     }
-    public SetName(string name)
+
+    public void SetName(string name)
     {
       _name = name;
     }
 
-    public string GetId()
+    public int GetId()
     {
       return _id;
     }
-    public SetId(int id)
+    public void SetId(int id)
     {
       _id = id;
     }
 
-    public string GetStylist()
+    public int GetStylist()
     {
       return _stylistId;
     }
-    public SetStylist(int stylistId)
+    public void SetStylist(int stylistId)
     {
       _stylistId = stylistId;
+    }
+
+    public void Save()
+    {
+      string columns = "name";
+      List<string> valueNames = new List<string>(){"@Name"};
+      List<Object> values = new List<Object>(){_name};
+      DB.SaveToTable(_tableName,columns,valueNames,values);
+      _id = DB.LastInsertId(_tableName);
+    }
+
+    public static void DeleteAll(bool saveUniqueIds = true)
+    {
+      DB.ClearTable(_tableName,saveUniqueIds);
+    }
+
+    public static void DeleteId(int deleteId)
+    {
+      DB.DeleteById(_tableName,deleteId);
+    }
+
+    public void Delete()
+    {
+      DB.DeleteById(_tableName,_id);
     }
 
   }
