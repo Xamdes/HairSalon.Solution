@@ -1,12 +1,13 @@
-<h1>To Do List</h1>
+<h1>Hair Salon</h1>
 <ul>
   @foreach(var stylist in Model)
   {
     <li><a href='/stylists/@stylist.GetId()'>@stylist.GetName()</li>
   }
 </ul>
+
 <p>
-<a href="/stylists/new">Add Item</a>
+<a href="/stylists/new">Add Stylist</a>
 </p>
 <form action="/stylists/delete" method="post">
   <button type="submit" name="button">Clear All Items</button>
