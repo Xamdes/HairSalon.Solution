@@ -58,6 +58,25 @@ namespace HairSalon.Models
       _id = DB.LastInsertId(_tableName);
     }
 
+    public static Client Find(int id)
+    {
+      int clientId = -1;
+      string name = "";
+      int stylistId = -1;
+      DB.OpenConnection();
+      DB.SetCommand(@"SELECT * FROM clients WHERE id=@thisId;");
+      DB.AddParameter("@thisId",id);
+      MySqlDataReader rdr = DB.ReadSqlCommand();
+      while(rdr.Read())
+      {
+        clientId = rdr.GetInt32(0);
+        stylistId = rdr.GetInt32(1);
+        name = rdr.GetString(2);
+      }
+      DB.CloseConnection();
+      return (new Client(name,stylistId,clientId));
+    }
+
     public static void DeleteAll(bool saveUniqueIds = true)
     {
       DB.ClearTable(_tableName,saveUniqueIds);
