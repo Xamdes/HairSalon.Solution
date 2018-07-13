@@ -45,18 +45,19 @@ namespace HairSalon.Tests
     }
 
     [TestMethod]
-    public void Stylist_Not_Equal()
+    public void Found_Client_From_Stylist()
     {
       //Arrange
       Stylist firstStylist = new Stylist("Sam");
-      Stylist secondStylist = new Stylist("Sam");
 
       //Act
       firstStylist.Save();
-      secondStylist.Save();
+      firstStylist.AddClient("Jerry");
+      List<Client> clients = firstStylist.GetClients();
+
 
       //Assert
-      Assert.AreNotEqual(firstStylist, secondStylist);
+      Assert.AreEqual("Jerry", clients[0].GetName());
     }
 
   }

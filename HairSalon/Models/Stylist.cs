@@ -41,6 +41,8 @@ namespace HairSalon.Models
 
     public void AddClient(Client newClient)
     {
+      //Needs to update client
+      newClient.SetStylist(_id);
       newClient.Save();
     }
 
