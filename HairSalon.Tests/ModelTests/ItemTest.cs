@@ -1,9 +1,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ToDoList.Models;
+using HairSalon.Models;
 using System;
 using System.Collections.Generic;
 
-namespace ToDoList.Tests
+namespace HairSalon.Tests
 {
   [TestClass]
   public class ItemTest : IDisposable

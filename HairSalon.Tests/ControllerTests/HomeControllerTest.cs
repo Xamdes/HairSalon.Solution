@@ -2,10 +2,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using ToDoList.Controllers;
-using ToDoList.Models;
+using HairSalon.Controllers;
+using HairSalon.Models;
 
-namespace ToDoList.Tests
+namespace HairSalon.Tests
 {
   [TestClass]
   public class HomeControllerTest
@@ -23,20 +23,5 @@ namespace ToDoList.Tests
       //Assert
       Assert.IsInstanceOfType(indexView, typeof(ViewResult));
     }
-
-    // [TestMethod]
-    // public void Index_HasCorrectModelType_ItemList()
-    // {
-    //   //Arrange
-    //   HomeController controller = new HomeController();
-    //   IActionResult actionResult = controller.Index();
-    //   ViewResult indexView = actionResult as ViewResult;
-    //
-    //   //Act
-    //   var result = indexView.ViewData.Model;
-    //
-    //   //Assert
-    //   Assert.IsInstanceOfType(result, typeof(List<Item>));
-    // }
   }
 }

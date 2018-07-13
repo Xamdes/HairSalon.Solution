@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using System.Linq;
-using ToDoList;
+using HairSalon;
 
-namespace ToDoList.Models
+namespace HairSalon.Models
 {
   public class DB
   {

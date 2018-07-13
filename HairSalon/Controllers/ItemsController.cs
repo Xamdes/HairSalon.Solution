@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using ToDoList.Models;
+using HairSalon.Models;
 
-namespace ToDoList.Controllers
+namespace HairSalon.Controllers
 {
   public class ItemsController : Controller
   {

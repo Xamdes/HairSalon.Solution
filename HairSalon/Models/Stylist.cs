@@ -5,6 +5,7 @@ using MySql.Data.MySqlClient;
 using System.Linq;
 
 
-namespace ToDoList.Models
+namespace HairSalon.Models
 {
+
 }
