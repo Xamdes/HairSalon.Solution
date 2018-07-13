@@ -51,8 +51,8 @@ namespace HairSalon
 
   public static class DBConfiguration
   {
-    private static string _connection = "server=localhost;user id=root;password=root;port=8889;database=steven_colburn;Convert Zero Datetime=True;Allow User Variables=true;";
-    private static string _connectionTest = "server=localhost;user id=root;password=root;port=8889;database=steven_colburn_test;Convert Zero Datetime=True;Allow User Variables=true;";
+    private static string _connection = "server=localhost;user id=root;password=root;port=8889;database=steven_colburn;Allow User Variables=true;";
+    private static string _connectionTest = "server=localhost;user id=root;password=root;port=8889;database=steven_colburn_test;Allow User Variables=true;";
 
     public static string GetConnection()
     {
@@ -71,7 +71,12 @@ namespace HairSalon
 
     public static void DefaultConnection()
     {
-      _connection = "server=localhost;user id=root;password=root;port=8889;database=steven_colburn;Convert Zero Datetime=True;Allow User Variables=true;";
+      _connection = "server=localhost;user id=root;password=root;port=8889;database=steven_colburn;Allow User Variables=true;";
+    }
+
+    public static void UsingTestConnection()
+    {
+      _connection = _connectionTest;
     }
   }
 }

@@ -117,5 +117,28 @@ namespace HairSalon.Models
       DB.DeleteById(_tableName,_id);
     }
 
+    public static bool ReturnTrue()
+    {
+      return true;
+    }
+
+    public override bool Equals(System.Object otherItem)
+    {
+      if (otherItem is Stylist)
+      {
+        Stylist newItem = (Stylist) otherItem;
+        return this.GetId().Equals(newItem.GetId());
+      }
+      else
+      {
+        return false;
+      }
+    }
+
+    public override int GetHashCode()
+    {
+      return this.GetName().GetHashCode();
+    }
+
   }
 }
