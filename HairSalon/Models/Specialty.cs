@@ -12,19 +12,20 @@ namespace HairSalon.Models
     private string _specialty;
     private int _id;
 
+    public Specialty(string s)
+    {
+      _specialty = s;
+    }
+
     public string GetSpecialty()
     {
       return _specialty;
     }
 
-    public void SetSpecialty(string s)
+    public void SetSpecialty(string specialty,int id = 0)
     {
-      _specialty = s;
-    }
-
-    public string GetName()
-    {
-      return _name;
+      _specialty = specialty;
+      _id = id;
     }
 
     public int GetId()
@@ -34,76 +35,58 @@ namespace HairSalon.Models
 
     public void Save()
     {
-      string columns = "name";
-      List<string> valueNames = new List<string>(){"@Name"};
-      List<Object> values = new List<Object>(){_name};
+      string columns = "specialty";
+      List<string> valueNames = new List<string>(){"@Specialty"};
+      List<Object> values = new List<Object>(){_specialty};
       DB.SaveToTable(_tableName,columns,valueNames,values);
-      _id = DB.LastInsertId(_tableName);
+      _id = DB.LastInsertId();
     }
 
-    public void AddClient(Client newClient)
+    public void AddSpecialty(Specialty newSpecialty)
     {
       //Needs to update client
-      newClient.SetStylist(_id);
-      newClient.Save();
+      newSpecialty.SetSpecialty(_id);
+      newSpecialty.Save();
     }
 
-    public void AddClient(string name)
+    public void AddSpecialty(string s)
     {
-      Client newClient = new Client(name,_id);
-      newClient.Save();
+      Specialty newSpecialty = new Specialty(s);
+      newSpecialty.Save();
     }
 
-    public static List<Stylist> GetAll(string orderBy = "id", string order = "ASC")
+    public static List<Specialty> GetAll(string orderBy = "id", string order = "ASC")
     {
-      List<Stylist> stylists = new List<Stylist>(){};
+      List<Specialty> specialties = new List<Specialty>(){};
       DB.OpenConnection();
-      DB.SetCommand(@"SELECT * FROM stylists ORDER BY "+orderBy+" "+order+";");
+      DB.SetCommand(@"SELECT * FROM "+_tableName+" ORDER BY "+orderBy+" "+order+";");
       MySqlDataReader rdr = DB.ReadSqlCommand();
       while(rdr.Read())
       {
         int id = rdr.GetInt32(0);
-        string name = rdr.GetString(1);
-        Stylist newStylist = new Stylist(name,id);
-        stylists.Add(newStylist);
+        string specialty = rdr.GetString(1);
+        Specialty newSpeciality = new Stylist(specialty,id);
+        specialties.Add(newSpeciality);
       }
       DB.CloseConnection();
-      return stylists;
+      return specialties;
     }
 
-    public List<Client> GetClients(string orderBy = "id", string order = "ASC")
+    public static Specialty Find(int id)
     {
-      List<Client> clients = new List<Client>(){};
+      int sid = -1;
+      string specialty = "";
       DB.OpenConnection();
-      DB.SetCommand(@"SELECT * FROM clients WHERE stylistId=@Id  ORDER BY "+orderBy+" "+order+";");
-      DB.AddParameter("@Id",_id);
-      MySqlDataReader rdr = DB.ReadSqlCommand();
-      while(rdr.Read())
-      {
-        int id = rdr.GetInt32(0);
-        string name = rdr.GetString(2);
-        Client newClient = new Client(name,_id,id);
-        clients.Add(newClient);
-      }
-      DB.CloseConnection();
-      return clients;
-    }
-
-    public static Stylist Find(int id)
-    {
-      int stylistId = -1;
-      string name = "";
-      DB.OpenConnection();
-      DB.SetCommand(@"SELECT * FROM stylists WHERE id=@thisId;");
+      DB.SetCommand(@"SELECT * FROM "+_tableName+" WHERE id=@thisId;");
       DB.AddParameter("@thisId",id);
       MySqlDataReader rdr = DB.ReadSqlCommand();
       while(rdr.Read())
       {
-        stylistId = rdr.GetInt32(0);
-        name = rdr.GetString(1);
+        sid = rdr.GetInt32(0);
+        specialty = rdr.GetString(1);
       }
       DB.CloseConnection();
-      return (new Stylist(name,stylistId));
+      return (new Specialty(specialty,sid));
     }
 
     public static void DeleteAll(bool saveUniqueIds = true)
@@ -128,9 +111,9 @@ namespace HairSalon.Models
 
     public override bool Equals(System.Object otherItem)
     {
-      if (otherItem is Stylist)
+      if (otherItem is Specialty)
       {
-        Stylist newItem = (Stylist) otherItem;
+        Specialty newItem = (Specialty) otherItem;
         return this.GetId().Equals(newItem.GetId());
       }
       else
@@ -141,7 +124,7 @@ namespace HairSalon.Models
 
     public override int GetHashCode()
     {
-      return this.GetName().GetHashCode();
+      return this.GetSpecialty().GetHashCode();
     }
 
 
