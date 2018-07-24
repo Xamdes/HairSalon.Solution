@@ -125,6 +125,10 @@ namespace HairSalon.Models
       CloseConnection();
       return id;
     }
+    public static int LastInsertId()
+    {
+      return _cmd.LastInsertedId;
+    }
   }
 }
 

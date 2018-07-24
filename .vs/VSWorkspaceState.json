@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\HairSalon",
+    "\\HairSalon\\Controllers",
+    "\\HairSalon\\Models",
+    "\\HairSalon\\Views",
+    "\\HairSalon\\Views\\Stylists"
+  ],
+  "SelectedNode": "\\HairSalon\\Controllers\\StylistsController.cs",
+  "PreviewInSolutionExplorer": false
+}
