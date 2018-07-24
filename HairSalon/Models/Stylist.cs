@@ -54,21 +54,23 @@ namespace HairSalon.Models
       newClient.Save();
     }
 
-    public static List<Stylist> GetAll(string orderBy = "id", string order = "ASC")
+    public static List<Stylist> GetAll()
     {
-      List<Stylist> stylists = new List<Stylist>(){};
-      DB.OpenConnection();
-      DB.SetCommand(@"SELECT * FROM stylists ORDER BY "+orderBy+" "+order+";");
-      MySqlDataReader rdr = DB.ReadSqlCommand();
-      while(rdr.Read())
-      {
+    string orderBy = "id"; string order = "ASC";
+    List<Object> objects = new List<Object>(){};
+    DB.OpenConnection();
+    DB.SetCommand(@"SELECT * FROM "+_tableName+" ORDER BY "+orderBy+" "+order+";");
+    DB.ReadTable(DelegateGetAll,objects);
+    DB.CloseConnection();
+    return objects.Cast<Stylist>().ToList();
+    }
+
+    public static void DelegateGetAll(MySqlDataReader rdr, List<Object> objects)
+    {
         int id = rdr.GetInt32(0);
         string name = rdr.GetString(1);
         Stylist newStylist = new Stylist(name,id);
-        stylists.Add(newStylist);
-      }
-      DB.CloseConnection();
-      return stylists;
+        objects.Add(newStylist);
     }
 
     public List<Client> GetClients(string orderBy = "id", string order = "ASC")

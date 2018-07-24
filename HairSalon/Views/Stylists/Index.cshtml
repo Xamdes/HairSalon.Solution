@@ -2,7 +2,7 @@
 <ul>
   @foreach(var stylist in Model)
   {
-    <li><a href='/stylists/@stylist.GetId()'>@stylist.GetName()</li>
+    <li><a href='/stylists/@stylist.GetId()'>@stylist.GetName()</a></li>
   }
 </ul>
 
@@ -12,3 +12,6 @@
 <form action="/stylists/delete" method="post">
   <button type="submit" name="button">Delete All Stylists</button>
 </form>
+<p>
+  <a href="/clients/">Client List</a>
+</p>

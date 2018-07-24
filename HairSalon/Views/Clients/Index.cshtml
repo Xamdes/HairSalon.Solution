@@ -1,0 +1,10 @@
+<h1>Welcome to the Hair Salon!</h1>
+<a href='/stylists'>
+  Hair Salon</a>
+
+  <ul>
+    @foreach(var client in Model)
+  {
+    <li><a href='/clients/@client.GetId()'>@client.GetName()</a></li>
+  }
+  </ul>
