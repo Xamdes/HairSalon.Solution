@@ -1,4 +1,8 @@
 <h1>Hair Salon</h1>
+<p>
+  <a href="/">Home</a>
+</p>
+
 <ul>
   @foreach(var stylist in Model)
   {
@@ -9,9 +13,8 @@
 <p>
 <a href="/stylists/new">Add Stylist</a>
 </p>
+
 <form action="/stylists/delete" method="post">
   <button type="submit" name="button">Delete All Stylists</button>
 </form>
-<p>
-  <a href="/clients/">Client List</a>
-</p>
+
