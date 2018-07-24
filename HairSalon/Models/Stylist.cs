@@ -108,6 +108,11 @@ namespace HairSalon.Models
       return (new Stylist(name,stylistId));
     }
 
+    public void ChangeName(string newName)
+    {
+      DB.Edit(_tableName,_id, "name",  newName);
+    }
+
     public static void DeleteAll(bool saveUniqueIds = true)
     {
       DB.ClearTable(_tableName,saveUniqueIds);

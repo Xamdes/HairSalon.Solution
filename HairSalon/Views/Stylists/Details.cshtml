@@ -3,11 +3,12 @@
 <ul>
   @foreach(var client in Model.GetClients())
   {
-    <li>Client: <a href="/clients/@client.GetId()">@client.GetName()</a></li>
+  <li>Client: <a href="/clients/@client.GetId()">@client.GetName()</a></li>
   }
 </ul>
 
-<p><a href='/stylists/@Model.GetId()/new'>Add Client</a></p>
-<a href='/stylists/@Model.GetId()/delete'>Delete Stylist</a>
-<a href='/stylists/new'>Add another Stylist</a>
-<a href='/stylists'>View all Stylists</a>
+<div><a href="/stylists/@Model.GetId()/newname">Change Name</a></div>
+<div><a href='/stylists/@Model.GetId()/new'>Add Client</a></div>
+<div><a href='/stylists/@Model.GetId()/delete'>Delete Stylist</a></div>
+<div><a href='/stylists/new'>Add another Stylist</a></div>
+<div><a href='/stylists'>View all Stylists</a></div>
