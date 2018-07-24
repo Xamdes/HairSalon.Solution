@@ -17,6 +17,24 @@
     * Customer requires Stylist first
   * Employee Select Stylist and see details including customer list
 
+## Run HairSalon
+
+  * cd HairSalon.Solution
+  * cd HairSalon
+  * dotnet restore
+  * dotnet build
+  * dotnet run
+  * open browser (Chrome)
+  * Enter http://localhost:5000 as a url
+
+## Test HairSalon
+
+  * cd HairSalon.Solution
+  * cd HairSalon.Tests
+  * dotnet restore
+  * dotnet build
+  * dotnet test
+
 ## Database
 
   * CREATE DATABASE steven_colburn;

@@ -12,5 +12,12 @@ namespace HairSalon.Controllers
     {
       return View(Client.GetAll());
     }
+
+    [HttpGet("/clients/{clientId}")]
+    public ActionResult Details(int clientId)
+    {
+      Client newClient = Client.Find(clientId);
+      return View(newClient);
+    }
   }
 }

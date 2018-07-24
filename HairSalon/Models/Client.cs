@@ -40,10 +40,16 @@ namespace HairSalon.Models
       _id = id;
     }
 
-    public int GetStylist()
+    public int GetStylistId()
     {
       return _stylistId;
     }
+
+    public string GetStylistName()
+    {
+    return Stylist.Find(_stylistId).GetName();
+    }
+
     public void SetStylist(int stylistId)
     {
       _stylistId = stylistId;
