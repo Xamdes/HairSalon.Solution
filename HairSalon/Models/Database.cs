@@ -12,6 +12,8 @@ namespace HairSalon.Models
     private static MySqlConnection _conn;
     private static MySqlCommand _cmd;
     private static string _connectionString = DBConfiguration.GetConnection();
+    public delegate void Del(MySqlDataReader rdr, List<Object> objects);
+
 
     public static MySqlConnection GetConnection()
     {
@@ -65,6 +67,15 @@ namespace HairSalon.Models
       return (_cmd.ExecuteReader() as MySqlDataReader);
     }
 
+    public static void ReadTable(Del callback, List<Object> objects)
+    {
+      MySqlDataReader rdr = ReadSqlCommand();
+      while(rdr.Read())
+      {
+        callback(rdr,objects);
+      }
+    }
+
     public static void Edit(string tableName,int id, string what,  Object editValue)
     {
       OpenConnection();
@@ -102,17 +113,20 @@ namespace HairSalon.Models
     public static void SaveToTable(string tableName,string columns,List<string> values,List<Object> parameters)
     {
       string valueNames = string.Join(",",values);
-      OpenConnection();
       SetCommand(@"INSERT INTO "+tableName+" ("+columns+") VALUES ("+valueNames+");");
       for(int i = 0; i<parameters.Count();i++)
       {
         AddParameter(values[i], parameters[i]);
       }
       RunSqlCommand();
-      CloseConnection();
     }
 
-    public static int LastInsertId(string tableName, string sid = "id")
+    public static int LastInsertId()
+    {
+      return (int) _cmd.LastInsertedId;
+    }
+
+    public static int LastTableId(string tableName, string sid = "id")
     {
       int id = -1;
       OpenConnection();
@@ -124,10 +138,6 @@ namespace HairSalon.Models
       }
       CloseConnection();
       return id;
-    }
-    public static int LastInsertId()
-    {
-      return _cmd.LastInsertedId;
     }
   }
 }

@@ -4,9 +4,8 @@
     "\\HairSalon",
     "\\HairSalon\\Controllers",
     "\\HairSalon\\Models",
-    "\\HairSalon\\Views",
-    "\\HairSalon\\Views\\Stylists"
+    "\\HairSalon\\Views"
   ],
-  "SelectedNode": "\\HairSalon\\Controllers\\StylistsController.cs",
+  "SelectedNode": "\\HairSalon\\Models\\Database.cs",
   "PreviewInSolutionExplorer": false
 }

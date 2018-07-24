@@ -17,6 +17,12 @@ namespace HairSalon.Models
       _specialty = s;
     }
 
+    public Specialty(string s,int id)
+    {
+      _specialty = s;
+      _id = id;
+    }
+
     public string GetSpecialty()
     {
       return _specialty;
@@ -38,15 +44,10 @@ namespace HairSalon.Models
       string columns = "specialty";
       List<string> valueNames = new List<string>(){"@Specialty"};
       List<Object> values = new List<Object>(){_specialty};
+      DB.OpenConnection();
       DB.SaveToTable(_tableName,columns,valueNames,values);
       _id = DB.LastInsertId();
-    }
-
-    public void AddSpecialty(Specialty newSpecialty)
-    {
-      //Needs to update client
-      newSpecialty.SetSpecialty(_id);
-      newSpecialty.Save();
+      DB.CloseConnection();
     }
 
     public void AddSpecialty(string s)
@@ -65,7 +66,7 @@ namespace HairSalon.Models
       {
         int id = rdr.GetInt32(0);
         string specialty = rdr.GetString(1);
-        Specialty newSpeciality = new Stylist(specialty,id);
+        Specialty newSpeciality = new Specialty(specialty,id);
         specialties.Add(newSpeciality);
       }
       DB.CloseConnection();

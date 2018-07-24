@@ -54,8 +54,10 @@ namespace HairSalon.Models
       string columns = "name,stylistId";
       List<string> valueNames = new List<string>(){"@Name","@StylistId"};
       List<Object> values = new List<Object>(){_name,_stylistId};
+      DB.OpenConnection();
       DB.SaveToTable(_tableName,columns,valueNames,values);
-      _id = DB.LastInsertId(_tableName);
+      _id = DB.LastInsertId();
+      DB.CloseConnection();
     }
 
     public static Client Find(int id)
