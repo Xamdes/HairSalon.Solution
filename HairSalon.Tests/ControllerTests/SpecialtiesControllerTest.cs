@@ -8,14 +8,14 @@ using HairSalon.Models;
 namespace HairSalon.Tests
 {
   [TestClass]
-  public class StylistControllerTest
+  public class SpecialtiesControllerTest
   {
 
     [TestMethod]
     public void Index_ReturnsCorrectView_True()
     {
       //Arrange
-      StylistController controller = new StylistController();
+      SpecialtiesController controller = new SpecialtiesController();
 
       //Act
       ActionResult indexView = controller.Index();
