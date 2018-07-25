@@ -88,7 +88,7 @@ And here are the user stories that the salon owner would like you to add:
     [x] As an employee, I need to be able to delete clients (all and single).
     [x] As an employee, I need to be able to view clients (all and single).
     [x] As an employee, I need to be able to edit JUST the name of a stylist. (You can choose to allow employees to edit additional properties but it is not required.)
-    [ ] As an employee, I need to be able to edit ALL of the information for a client.
+    [x] As an employee, I need to be able to edit ALL of the information for a client.
     [x] As an employee, I need to be able to add a specialty and view all specialties that have been added.
     [x] As an employee, I need to be able to add a specialty to a stylist.
     [x] As an employee, I need to be able to click on a specialty and see all of the stylists that have that specialty.

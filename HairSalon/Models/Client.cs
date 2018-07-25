@@ -55,6 +55,16 @@ namespace HairSalon.Models
       _stylistId = stylistId;
     }
 
+    public void UpdateStylist()
+    {
+      DB.Edit(_tableName,_id,"stylistId",_stylistId);
+    }
+
+    public void UpdateName()
+    {
+      DB.Edit(_tableName,_id,"name",_name);
+    }
+
     public void Save()
     {
       string columns = "name,stylistId";

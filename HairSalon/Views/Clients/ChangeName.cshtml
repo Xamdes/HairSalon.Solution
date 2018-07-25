@@ -1,0 +1,7 @@
+<h1>Salon</h1>
+<h2>Change Client Name</h2>
+<form action="/clients/@Model.GetId()/change-name" method="post">
+  <label for="name">Stylist Name:</label>
+  <input id="new-item" name="name" type="text" value=@Model.GetName()>
+  <button type="submit">Submit</button>
+</form>
