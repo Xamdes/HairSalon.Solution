@@ -1,10 +1,16 @@
+@using HairSalon.Models;
 <h1>Salon</h1>
 <h2>@Model.GetSpecialty()</h2>
 
 <ul>
-@* <li>Stylist: <a href="/stylists/@Model.GetStylistId()">@Model.GetStylistName()</a></li> *@
+  @foreach(Stylist tempStylist in @Specialty.GetStylists(@Model.GetId()))
+  {
+    <li>Stylist: <a href="/stylists/@tempStylist.GetId()">@tempStylist.GetName()</a></li>
+  }
 </ul>
 
+<a href='/specialties/@Model.GetId()/add-stylist'>Add Stylist</a>
+<br />
 <a href='/specialties/@Model.GetId()/delete'>Delete Specialty</a>
 <br />
 <a href='/specialties'>Back</a>

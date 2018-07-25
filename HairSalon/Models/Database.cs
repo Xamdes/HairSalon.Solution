@@ -110,13 +110,24 @@ namespace HairSalon.Models
       CloseConnection();
     }
 
+    public static void DeleteBy(string tableName,string what, int id)
+    {
+      OpenConnection();
+      SetCommand(@"DELETE FROM "+tableName+" WHERE "+what+"=@id");
+      AddParameter("@id",id);
+      RunSqlCommand();
+      CloseConnection();
+    }
+
     public static void SaveToTable(string tableName,string columns,List<string> values,List<Object> parameters)
     {
       string valueNames = string.Join(",",values);
       SetCommand(@"INSERT INTO "+tableName+" ("+columns+") VALUES ("+valueNames+");");
-      for(int i = 0; i<parameters.Count();i++)
+      int i = 0;
+      foreach(Object o in parameters)
       {
         AddParameter(values[i], parameters[i]);
+        i++;
       }
       RunSqlCommand();
     }

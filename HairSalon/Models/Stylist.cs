@@ -9,15 +9,14 @@ namespace HairSalon.Models
   public class Stylist
   {
     private static string _tableName = "stylists";
+    private static string _tableRelational = "stylists_specialties";
     private string _name;
     private int _id;
-    private List<Client> _clients;
 
     public Stylist(string name,int id = -1)
     {
       _name = name;
       _id = id;
-      _clients = new List<Client>(){};
     }
 
     public string GetName()
@@ -108,6 +107,32 @@ namespace HairSalon.Models
       return (new Stylist(name,stylistId));
     }
 
+    public List<Specialty> GetSpecialties(string orderBy = "id", string order = "ASC")
+    {
+      List<Specialty> specialties = new List<Specialty>(){};
+      DB.OpenConnection();
+      DB.SetCommand(@"SELECT * FROM "+_tableRelational+" WHERE stylistId=@thisId ORDER BY "+orderBy+" "+order+";");
+      DB.AddParameter("@thisId",_id);
+      MySqlDataReader rdr = DB.ReadSqlCommand();
+      while(rdr.Read())
+      {
+        Specialty newSpeciality = Specialty.Find(rdr.GetInt32(1));
+        specialties.Add(newSpeciality);
+      }
+      DB.CloseConnection();
+      return specialties;
+    }
+
+    public void AddSpecialty(Specialty newSpecialty)
+    {
+      string columns = "speciltyId,stylistId";
+      List<string> valueNames = new List<string>(){"@SpecialtyId,@StylistId"};
+      List<Object> values = new List<Object>(){newSpecialty.GetId(),_id};
+      DB.OpenConnection();
+      DB.SaveToTable(_tableName,columns,valueNames,values);
+      DB.CloseConnection();
+    }
+
     public void ChangeName(string newName)
     {
       DB.Edit(_tableName,_id, "name",  newName);
@@ -116,16 +141,19 @@ namespace HairSalon.Models
     public static void DeleteAll(bool saveUniqueIds = true)
     {
       DB.ClearTable(_tableName,saveUniqueIds);
+      DB.ClearTable(_tableRelational,saveUniqueIds);
     }
 
     public static void DeleteId(int deleteId)
     {
       DB.DeleteById(_tableName,deleteId);
+      DB.DeleteBy(_tableRelational,"stylistId",deleteId);
     }
 
     public void Delete()
     {
       DB.DeleteById(_tableName,_id);
+      DB.DeleteBy(_tableRelational,"stylistId",_id);
     }
 
     public static bool ReturnTrue()

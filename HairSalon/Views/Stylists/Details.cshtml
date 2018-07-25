@@ -1,5 +1,7 @@
 <h1>Salon</h1>
-<h2>@Model.GetName() Clients</h2>
+<h2>Stylist: @Model.GetName()</h2>
+
+<h3>Clients:</h3>
 <ul>
   @foreach(var client in Model.GetClients())
   {
@@ -7,8 +9,17 @@
   }
 </ul>
 
+<h3>Specialties:</h3>
+<ul>
+  @foreach(var specialty in Model.GetSpecialties())
+  {
+  <li>Specialty: <a href="/specialties/@specialty.GetId()">@specialty.GetSpecialty()</a></li>
+  }
+</ul>
+
 <div><a href="/stylists/@Model.GetId()/newname">Change Name</a></div>
 <div><a href='/stylists/@Model.GetId()/new'>Add Client</a></div>
+<div><a href="/stylists/@Model.GetId()/add-specialty">Add Specialty</a></div>
 <div><a href='/stylists/@Model.GetId()/delete'>Delete Stylist</a></div>
 <div><a href='/stylists/new'>Add another Stylist</a></div>
 <div><a href='/stylists'>View all Stylists</a></div>

@@ -30,8 +30,8 @@ namespace HairSalon.Controllers
     [HttpGet("/specialties/{specialtyId}")]
     public ActionResult Details(int specialtyId)
     {
-      Specialty newClient = Specialty.Find(specialtyId);
-      return View(newClient);
+      Specialty newSpecialty = Specialty.Find(specialtyId);
+      return View(newSpecialty);
     }
 
     [HttpGet("/specialties/{specialtyId}/delete")]
@@ -46,6 +46,21 @@ namespace HairSalon.Controllers
     {
       Specialty.DeleteAll();
       return RedirectToAction("Index");
+    }
+
+    [HttpGet("/specialties/{specialtyId}/add-stylist")]
+    public ActionResult AddStylist(int specialtyId)
+    {
+      return View(specialtyId);
+    }
+
+    [HttpPost("/specialties/{specialtyId}/add-stylist")]
+    public ActionResult RedirectAddStylist(int specialtyId,int stylistId)
+    {
+      Specialty tempSpecialty = Specialty.Find(specialtyId);
+      Stylist tempStylist = Stylist.Find(stylistId);
+      tempSpecialty.AddStylist(tempStylist);
+      return RedirectToAction("Details");
     }
   }
 }

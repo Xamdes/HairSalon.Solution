@@ -9,6 +9,7 @@ namespace HairSalon.Models
   public class Specialty
   {
     private static string _tableName = "specialties";
+    private static string _tableRelational = "stylists_specialties";
     private string _specialty;
     private int _id;
 
@@ -51,6 +52,32 @@ namespace HairSalon.Models
       newSpecialty.Save();
     }
 
+    public static List<Stylist> GetStylists(int id, string orderBy = "id", string order = "ASC")
+    {
+      List<Stylist> stylists = new List<Stylist>(){};
+      DB.OpenConnection();
+      DB.SetCommand(@"SELECT * FROM "+_tableRelational+" WHERE specialtyId=@thisId ORDER BY "+orderBy+" "+order+";");
+      DB.AddParameter("@thisId",id);
+      MySqlDataReader rdr = DB.ReadSqlCommand();
+      while(rdr.Read())
+      {
+        Stylist newStylist = Stylist.Find(rdr.GetInt32(2));
+        stylists.Add(newStylist);
+      }
+      DB.CloseConnection();
+      return stylists;
+    }
+
+    public void AddStylist(Stylist tempStylist)
+    {
+      DB.OpenConnection();
+      DB.SetCommand(@"INSERT INTO "+_tableRelational+" (specialtyId,stylistId) VALUES (@SpecialtyId,@StylistId);");
+      DB.AddParameter("@SpecialtyId",_id);
+      DB.AddParameter("@StylistId",tempStylist.GetId());
+      DB.RunSqlCommand();
+      DB.CloseConnection();
+    }
+
     public static List<Specialty> GetAll(string orderBy = "id", string order = "ASC")
     {
       List<Specialty> specialties = new List<Specialty>(){};
@@ -88,16 +115,19 @@ namespace HairSalon.Models
     public static void DeleteAll(bool saveUniqueIds = true)
     {
       DB.ClearTable(_tableName,saveUniqueIds);
+      DB.ClearTable(_tableRelational,saveUniqueIds);
     }
 
     public static void DeleteId(int deleteId)
     {
       DB.DeleteById(_tableName,deleteId);
+      DB.DeleteBy(_tableRelational,"specialtyId",deleteId);
     }
 
     public void Delete()
     {
       DB.DeleteById(_tableName,_id);
+      DB.DeleteBy(_tableRelational,"specialtyId",_id);
     }
 
     public static bool ReturnTrue()

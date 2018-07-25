@@ -60,6 +60,8 @@
 
   * CREATE TABLE `steven_colburn`.`specialties` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
+  * CREATE TABLE `steven_colburn`.`stylists_specialties` ( `id` INT NOT NULL AUTO_INCREMENT , `specialtyId` INT NOT NULL , `stylistId` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
   * CREATE DATABASE steven_colburn_test;
   * USE steven_colburn_test;
 
@@ -68,6 +70,8 @@
   * CREATE TABLE `steven_colburn_test`.`clients` ( `id` INT NOT NULL AUTO_INCREMENT , `stylistId` INT NOT NULL , `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
 
   * CREATE TABLE `steven_colburn_test`.`specialties` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+  * CREATE TABLE `steven_colburn_test`.`stylists_specialties` ( `id` INT NOT NULL AUTO_INCREMENT , `specialistId` INT NOT NULL , `stylistId` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
 ## Requirements
 
@@ -86,10 +90,10 @@ And here are the user stories that the salon owner would like you to add:
     [x] As an employee, I need to be able to edit JUST the name of a stylist. (You can choose to allow employees to edit additional properties but it is not required.)
     [ ] As an employee, I need to be able to edit ALL of the information for a client.
     [x] As an employee, I need to be able to add a specialty and view all specialties that have been added.
-    [ ] As an employee, I need to be able to add a specialty to a stylist.
-    [ ] As an employee, I need to be able to click on a specialty and see all of the stylists that have that specialty.
-    [ ] As an employee, I need to see the stylist's specialties on the stylist's details page.
-    [ ] As an employee, I need to be able to add a stylist to a specialty.
+    [x] As an employee, I need to be able to add a specialty to a stylist.
+    [x] As an employee, I need to be able to click on a specialty and see all of the stylists that have that specialty.
+    [x] As an employee, I need to see the stylist's specialties on the stylist's details page.
+    [x] As an employee, I need to be able to add a stylist to a specialty.
 
 
 ## License
