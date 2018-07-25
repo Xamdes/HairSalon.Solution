@@ -8,16 +8,11 @@ namespace HairSalon.Models
 {
   public class Specialty
   {
-    private static string _tableName = "specialty";
+    private static string _tableName = "specialties";
     private string _specialty;
     private int _id;
 
-    public Specialty(string s)
-    {
-      _specialty = s;
-    }
-
-    public Specialty(string s,int id)
+    public Specialty(string s,int id = -1)
     {
       _specialty = s;
       _id = id;
@@ -41,7 +36,7 @@ namespace HairSalon.Models
 
     public void Save()
     {
-      string columns = "specialty";
+      string columns = "name";
       List<string> valueNames = new List<string>(){"@Specialty"};
       List<Object> values = new List<Object>(){_specialty};
       DB.OpenConnection();

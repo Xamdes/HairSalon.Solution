@@ -1,0 +1,17 @@
+<h1>Welcome to the Specialties List!</h1>
+<p><a href='/'>Home</a></p>
+
+<ul>
+  @foreach(var specialty in Model)
+  {
+  <li><a href='/specialties/@specialty.GetId()'>@specialty.GetSpecialty()</a></li>
+  }
+</ul>
+
+<form action="/specialties/add" method="get">
+  <button type="submit" name="button">Add Specialty</button>
+</form>
+
+<form action="/specialties/delete" method="post">
+  <button type="submit" name="button">Delete All Specialties</button>
+</form>
