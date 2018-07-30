@@ -22,12 +22,6 @@ namespace HairSalon.Tests
     {
       Specialty.DeleteAll();
     }
-    [TestMethod]
-    public void Return_True()
-    {
-      //Eventual Tests
-      Assert.AreEqual(true, Specialty.ReturnTrue());
-    }
 
     [TestMethod]
     public void ReturnStylistFromSql_True()

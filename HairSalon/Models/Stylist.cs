@@ -156,11 +156,6 @@ namespace HairSalon.Models
       DB.DeleteBy(_tableRelational,"stylistId",_id);
     }
 
-    public static bool ReturnTrue()
-    {
-      return true;
-    }
-
     public override bool Equals(System.Object otherItem)
     {
       if (otherItem is Stylist)

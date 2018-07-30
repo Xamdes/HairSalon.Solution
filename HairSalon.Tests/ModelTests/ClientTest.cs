@@ -23,12 +23,6 @@ namespace HairSalon.Tests
       Stylist.DeleteAll();
       Client.DeleteAll();
     }
-    [TestMethod]
-    public void Return_True()
-    {
-      //Eventual Tests
-      Assert.AreEqual(true, Client.ReturnTrue());
-    }
 
     [TestMethod]
     public void ReturnStylistFromSql_True()

@@ -130,11 +130,6 @@ namespace HairSalon.Models
       DB.DeleteById(_tableName,_id);
     }
 
-    public static bool ReturnTrue()
-    {
-      return true;
-    }
-
     public override bool Equals(System.Object otherItem)
     {
       if (otherItem is Client)
